@@ -5,7 +5,9 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "menu pembelian", "menu pembelian\menu pembelian.csproj", "{23634004-4C32-4E03-BFBF-A2B01933D5B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apiMenu", "apiMenu\apiMenu.csproj", "{107BD000-F5A2-4889-A4F5-F53E5E54A29C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiMenu", "apiMenu\apiMenu.csproj", "{107BD000-F5A2-4889-A4F5-F53E5E54A29C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registration", "Registration\Registration.csproj", "{D0675E4D-006E-4E6C-AA39-BEFBB65AA6FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{107BD000-F5A2-4889-A4F5-F53E5E54A29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{107BD000-F5A2-4889-A4F5-F53E5E54A29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{107BD000-F5A2-4889-A4F5-F53E5E54A29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0675E4D-006E-4E6C-AA39-BEFBB65AA6FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0675E4D-006E-4E6C-AA39-BEFBB65AA6FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0675E4D-006E-4E6C-AA39-BEFBB65AA6FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0675E4D-006E-4E6C-AA39-BEFBB65AA6FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
