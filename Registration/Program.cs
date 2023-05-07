@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Data.SqlClient;
 using System;
+using System.Diagnostics.Contracts;
+using UtilityLibrary;
 
 namespace Registration
 {
@@ -15,8 +17,13 @@ namespace Registration
 
             Console.WriteLine("Registration page\n");
 
-            Console.WriteLine("Masukkan nama anda: ");
-            name = Console.ReadLine();
+            do
+            {
+                Console.WriteLine("Masukkan nama anda: ");
+                name = Console.ReadLine();
+                Console.WriteLine(RegistrationLibrary.areNull(name));
+            } while (RegistrationLibrary.areNull(name));
+
             do
             {
                 Console.WriteLine("Masukkan username anda: ");
@@ -25,16 +32,20 @@ namespace Registration
                 {
                     Console.WriteLine("Username sudah ada, silahkan masukkan ulang.");
                 }
-            } while (checkUsername(username));
+            } while (checkUsername(username) && RegistrationLibrary.areNull(username));
 
+            do
+            {
+                Console.WriteLine("Masukkan password anda: ");
+                pw = Console.ReadLine();
+            } while (RegistrationLibrary.areNull(pw));
 
-            Console.WriteLine("Masukkan password anda: ");
-            pw = Console.ReadLine();
 
             do
             {
                 Console.WriteLine("Konfirmasi password anda: ");
                 confirmpw = Console.ReadLine();
+                Contract.Requires<ArgumentNullException>(confirmpw != null, "confirmpassword");
                 if (pw != confirmpw)
                 {
                     Console.WriteLine("password tidak sama, silahkan masukkan ulang");
@@ -43,7 +54,7 @@ namespace Registration
                 {
                     
                 }
-            } while (pw != confirmpw);
+            } while (pw != confirmpw && RegistrationLibrary.areNull(confirmpw));
 
             createAkun(name,username,pw);
 
