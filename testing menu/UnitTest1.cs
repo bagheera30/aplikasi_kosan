@@ -1,4 +1,4 @@
-namespace unit_test
+namespace testing_menu
 {
     [TestClass]
     public class UnitTest1

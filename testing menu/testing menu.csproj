@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
-    <RootNamespace>unit_test</RootNamespace>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>testing_menu</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
