@@ -79,11 +79,16 @@ namespace menu_pembelian
                 return;
             }
 
-            menus.Add(m); // Add a cloned copy of the menu object
+            menus.Add(m); 
             Console.WriteLine($"Menu '{m.Nama}' has been added to the library.");
         }
         public static void UpdateMenu(int id, menu updatedMenu)
         {
+            if (updatedMenu == null)
+            {
+                Console.WriteLine("Updated menu object is null.");
+                return;
+            }
             menu menu = menus.FirstOrDefault(m => m.id ==id);
             if (menu != null)
             {
