@@ -11,7 +11,7 @@ namespace apiMenu.Controllers
     [ApiController]
     public class menuController : ControllerBase
     {
-        private const string filePath = "daftar_menu.json";
+        private const string filePath = "menu.json";
 
         // GET: api/Menu
         [HttpGet]
