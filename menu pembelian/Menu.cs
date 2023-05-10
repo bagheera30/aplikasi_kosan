@@ -13,10 +13,7 @@ namespace menu_pembelian
         public string foto { get; set; }
 
     }
-    public class detail
-    {
-        
-    }
+  
     public static class MenuManager
     {
         private static List<menu> menus;
@@ -49,14 +46,24 @@ namespace menu_pembelian
         {
             try
             {
-                string js = File.ReadAllText(fp);
-                menus = JsonSerializer.Deserialize<List<menu>>(js);
-                Console.WriteLine("berhasil deserialize");
+                string jsonData = File.ReadAllText(fp);
+                List<menu> deserializedMenus = JsonSerializer.Deserialize<List<menu>>(jsonData);
+                ClearMenus();
+
+                foreach (var menu in deserializedMenus)
+                {
+                    menus.Add(menu);
+                    Console.WriteLine($"Menu '{menu.Nama}' has been added to the library.");
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine($"An error occurred while deserializing the library: {e.Message}");
             }
+        }
+        public static void ClearMenus()
+        {
+            menus.Clear();
         }
         public static void Serialize()
         {
@@ -89,10 +96,12 @@ namespace menu_pembelian
                 Console.WriteLine("Updated menu object is null.");
                 return;
             }
-            menu menu = menus.FirstOrDefault(m => m.id ==id);
+            menu menu = menus.FirstOrDefault(m => m.id == id);
             if (menu != null)
             {
                 menu.Nama = updatedMenu.Nama;
+                menu.harga = updatedMenu.harga; // Memperbarui nilai harga menu yang ada
+                menu.foto = updatedMenu.foto;
                 Console.WriteLine($"Menu with id {id} has been updated: {menu.Nama}");
             }
             else
@@ -103,18 +112,16 @@ namespace menu_pembelian
 
         public static void DeleteMenu(int id)
         {
-            menu menu = menus.FirstOrDefault(m => m.id == id);
-            if (menu != null)
+            var menuToRemove = menus.FirstOrDefault(m => m.id == id);
+            if (menuToRemove != null)
             {
-                menus.Remove(menu);
+                menus.Remove(menuToRemove);
                 Console.WriteLine($"Menu with id {id} has been deleted from the library.");
-            }
-            else
-            {
-                Console.WriteLine($"Menu with id {id} not found.");
             }
 
         }
+
+        
     }
 }
 
