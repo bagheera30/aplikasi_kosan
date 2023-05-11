@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "menu pembelian", "menu pemb
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiMenu", "apiMenu\apiMenu.csproj", "{107BD000-F5A2-4889-A4F5-F53E5E54A29C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testprojekmenu", "testprojekmenu\testprojekmenu.csproj", "{1912AA71-59E6-436C-A6E7-360AABC68959}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jalankan program kosan", "jalankan program menu\jalankan program kosan.csproj", "{0A3A7A24-FA70-4456-B1A0-894C6ACECB6B}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testprogrammenu", "testprogrammenu\testprogrammenu.csproj", "{F2FB2D98-A312-447A-9572-391FD13341CC}"
 EndProject
 Global
@@ -23,6 +27,14 @@ Global
 		{107BD000-F5A2-4889-A4F5-F53E5E54A29C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{107BD000-F5A2-4889-A4F5-F53E5E54A29C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{107BD000-F5A2-4889-A4F5-F53E5E54A29C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1912AA71-59E6-436C-A6E7-360AABC68959}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1912AA71-59E6-436C-A6E7-360AABC68959}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1912AA71-59E6-436C-A6E7-360AABC68959}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1912AA71-59E6-436C-A6E7-360AABC68959}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A3A7A24-FA70-4456-B1A0-894C6ACECB6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A3A7A24-FA70-4456-B1A0-894C6ACECB6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A3A7A24-FA70-4456-B1A0-894C6ACECB6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A3A7A24-FA70-4456-B1A0-894C6ACECB6B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F2FB2D98-A312-447A-9572-391FD13341CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F2FB2D98-A312-447A-9572-391FD13341CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2FB2D98-A312-447A-9572-391FD13341CC}.Release|Any CPU.ActiveCfg = Release|Any CPU

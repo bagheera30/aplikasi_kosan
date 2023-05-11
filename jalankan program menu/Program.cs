@@ -1,6 +1,6 @@
 ﻿internal class Program
 {
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         MenuSelection().GetAwaiter().GetResult();
     }
@@ -48,7 +48,7 @@
         using (HttpClient client = new HttpClient())
         {
             // Ganti URL dengan URL Web API Anda
-            string url = "http://localhost:5065/api/menu";
+            string url = "https://api.example.com/data";
 
             HttpResponseMessage response = await client.GetAsync(url);
 
@@ -76,7 +76,7 @@
         using (HttpClient client = new HttpClient())
         {
             // Ganti URL dengan URL Web API Anda
-            string url = "http://localhost:5065/api/menu";
+            string url = "https://api.example.com/data";
 
             HttpResponseMessage response = await client.PutAsync(url, new StringContent(updatedData));
 
@@ -102,7 +102,7 @@
         using (HttpClient client = new HttpClient())
         {
             // Ganti URL dengan URL Web API Anda
-            string url = "http://localhost:5065/api/menu";
+            string url = "https://api.example.com/data";
 
             HttpResponseMessage response = await client.PostAsync(url, new StringContent(newData));
 
@@ -116,4 +116,5 @@
             }
         }
     }
+
 }

@@ -85,8 +85,8 @@ namespace menu_pembelian
                 Console.WriteLine("Menu object is null.");
                 return;
             }
+            menus.Add(m); 
 
-            menus.Add(m);
             Console.WriteLine($"Menu '{m.Nama}' has been added to the library.");
         }
         public static void UpdateMenu(int id, menu updatedMenu)
@@ -120,7 +120,6 @@ namespace menu_pembelian
             }
 
         }
-
     }
 }
 
