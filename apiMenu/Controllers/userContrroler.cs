@@ -1,5 +1,4 @@
-﻿using menu_pembelian;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -7,30 +6,20 @@ namespace apiMenu.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class ValuesController : ControllerBase
     {
-        private const string filePath = "users.json";
         // GET: api/<ValuesController>
         [HttpGet]
-        public ActionResult<List<users>> Get()
+        public IEnumerable<string> Get()
         {
-            return usermanegement.GetUsers();
+            return new string[] { "value1", "value2" };
         }
-    }
 
         // GET api/<ValuesController>/5
-        [HttpGet("{nama}")]
-        public ActionResult<users> Getbynama(string nama)
+        [HttpGet("{id}")]
+        public string Get(int id)
         {
-        users u = usermanegement.getUsersbynama(nama); 
-        if(u!= null)
-        {
-            return u;
-        }
-        else
-        {
-            return NotFound($"User with name '{nama}' not found.");
-        }
+            return "value";
         }
 
         // POST api/<ValuesController>

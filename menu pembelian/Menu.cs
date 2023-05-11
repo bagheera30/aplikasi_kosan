@@ -13,11 +13,7 @@ namespace menu_pembelian
         public string foto { get; set; }
 
     }
-<<<<<<< HEAD
-  
-=======
 
->>>>>>> master
     public static class MenuManager
     {
         private static List<menu> menus;
@@ -89,12 +85,8 @@ namespace menu_pembelian
                 Console.WriteLine("Menu object is null.");
                 return;
             }
-
-<<<<<<< HEAD
             menus.Add(m); 
-=======
-            menus.Add(m);
->>>>>>> master
+
             Console.WriteLine($"Menu '{m.Nama}' has been added to the library.");
         }
         public static void UpdateMenu(int id, menu updatedMenu)
@@ -128,11 +120,6 @@ namespace menu_pembelian
             }
 
         }
-
-<<<<<<< HEAD
-        
-=======
->>>>>>> master
     }
 }
 
