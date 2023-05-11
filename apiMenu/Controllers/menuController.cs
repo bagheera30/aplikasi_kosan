@@ -11,7 +11,7 @@ namespace apiMenu.Controllers
     [ApiController]
     public class menuController : ControllerBase
     {
-        private const string filePath = "daftar_menu.json";
+        private const string filePath = "menu.json";
 
         // GET: api/Menu
         [HttpGet]
@@ -44,7 +44,7 @@ namespace apiMenu.Controllers
 
         // PUT: api/Menu
         [HttpPut("{id}")]
-        public ActionResult Put(int id,[FromBody] menu menu)
+        public ActionResult Put(int id, [FromBody] menu menu)
         {
             MenuManager.UpdateMenu(id, menu);
             MenuManager.Serialize();
@@ -62,6 +62,7 @@ namespace apiMenu.Controllers
             return NoContent();
         }
 
-        
+
+
     }
 }
