@@ -44,7 +44,7 @@ namespace apiMenu.Controllers
 
         // PUT: api/Menu
         [HttpPut("{id}")]
-        public ActionResult Put(int id,[FromBody] menu menu)
+        public ActionResult Put(int id, [FromBody] menu menu)
         {
             MenuManager.UpdateMenu(id, menu);
             MenuManager.Serialize();
@@ -62,6 +62,7 @@ namespace apiMenu.Controllers
             return NoContent();
         }
 
-        
+
+
     }
 }
