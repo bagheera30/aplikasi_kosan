@@ -1,8 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using System.Data.SqlClient;
-using System;
-using System.Diagnostics.Contracts;
+using Newtonsoft.Json;
 using UtilityLibrary;
+using Newtonsoft.Json.Linq;
 
 namespace Registration
 {
@@ -21,8 +20,7 @@ namespace Registration
             {
                 Console.WriteLine("Masukkan nama anda: ");
                 name = Console.ReadLine();
-                Console.WriteLine(RegistrationLibrary.areNull(name));
-            } while (RegistrationLibrary.areNull(name));
+            } while (RegistrationLibrary.areNull(name) == true);
 
             do
             {
@@ -32,20 +30,19 @@ namespace Registration
                 {
                     Console.WriteLine("Username sudah ada, silahkan masukkan ulang.");
                 }
-            } while (checkUsername(username) && RegistrationLibrary.areNull(username));
+            } while (checkUsername(username) == true || RegistrationLibrary.areNull(username) == true);
 
             do
             {
                 Console.WriteLine("Masukkan password anda: ");
                 pw = Console.ReadLine();
-            } while (RegistrationLibrary.areNull(pw));
+            } while (RegistrationLibrary.areNull(pw) == true);
 
 
             do
             {
                 Console.WriteLine("Konfirmasi password anda: ");
                 confirmpw = Console.ReadLine();
-                Contract.Requires<ArgumentNullException>(confirmpw != null, "confirmpassword");
                 if (pw != confirmpw)
                 {
                     Console.WriteLine("password tidak sama, silahkan masukkan ulang");
@@ -54,7 +51,7 @@ namespace Registration
                 {
                     
                 }
-            } while (pw != confirmpw && RegistrationLibrary.areNull(confirmpw));
+            } while (pw != confirmpw || RegistrationLibrary.areNull(confirmpw) == true);
 
             createAkun(name,username,pw);
 
@@ -65,35 +62,32 @@ namespace Registration
 
         static bool checkUsername(string username)
         {
-            SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\ryans\OneDrive - Telkom University\Kuliah\Semester 6\Konstruksi Perangkat Lunak\Tubes\main\Registration\Database1.mdf"";Integrated Security=True");
-            cn.Open();
-            bool result;
-            SqlDataReader dr;
-            SqlCommand cmd = new SqlCommand("select * from UserDB where username='" + username + "'", cn);
-            dr = cmd.ExecuteReader();
-            if (dr.Read())
-            {
-                dr.Close();
-                cn.Close();
-                return true;
-            }
-            dr.Close();
-            cn.Close();
-            return false;
+            var initialJson = File.ReadAllText("user.json");
+            dynamic data = JArray.Parse(initialJson);
 
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (data[i].username == username) 
+                { 
+                    return true; 
+                }
+            }
+            return false;
         }
 
 
         static void createAkun(string name, string username, string password)
         {
-            SqlConnection cn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=""C:\Users\ryans\OneDrive - Telkom University\Kuliah\Semester 6\Konstruksi Perangkat Lunak\Tubes\main\Registration\Database1.mdf"";Integrated Security=True");
-            cn.Open();
-            SqlCommand cmd = new SqlCommand("insert into UserDB values(@name,@username,@password)", cn);
-            cmd.Parameters.AddWithValue("name", name);
-            cmd.Parameters.AddWithValue("username", username);
-            cmd.Parameters.AddWithValue("password", password);
-            cmd.ExecuteNonQuery();
-            cn.Close();
+            var initialJson = File.ReadAllText("user.json");
+            var array = JArray.Parse(initialJson);
+            var itemToAdd = new JObject();
+            itemToAdd["name"] = name;
+            itemToAdd["username"] = username;
+            itemToAdd["password"] = password;
+            array.Add(itemToAdd);
+
+            var jsonToOutput = JsonConvert.SerializeObject(array, Formatting.Indented);
+            File.WriteAllText("user.json", jsonToOutput);
         }
 
 
