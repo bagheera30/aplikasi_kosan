@@ -10,7 +10,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testprojekmenu", "testprojekmenu\testprojekmenu.csproj", "{1912AA71-59E6-436C-A6E7-360AABC68959}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jalankan program menu", "jalankan program menu\jalankan program menu.csproj", "{0A3A7A24-FA70-4456-B1A0-894C6ACECB6B}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
