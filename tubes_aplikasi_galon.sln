@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrationTest", "Registr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityLibrary", "UtilityLibrary\UtilityLibrary.csproj", "{A2B023AB-DBDB-45C6-B129-0FF850F72167}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Login Menu", "Login Menu\Login Menu.csproj", "{1B84B29F-1517-4C2C-B40A-50EAAC3F4806}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{A2B023AB-DBDB-45C6-B129-0FF850F72167}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2B023AB-DBDB-45C6-B129-0FF850F72167}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2B023AB-DBDB-45C6-B129-0FF850F72167}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B84B29F-1517-4C2C-B40A-50EAAC3F4806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B84B29F-1517-4C2C-B40A-50EAAC3F4806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B84B29F-1517-4C2C-B40A-50EAAC3F4806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B84B29F-1517-4C2C-B40A-50EAAC3F4806}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
