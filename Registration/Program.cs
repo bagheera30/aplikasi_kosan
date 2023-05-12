@@ -24,28 +24,32 @@ namespace Registration
 
             do
             {
-                Console.WriteLine("Masukkan username anda: ");
+                Console.WriteLine("\nMasukkan username anda: ");
                 username = Console.ReadLine();
-                if (checkUsername(username))
+                if (RegistrationClass.checkUsername(username))
                 {
                     Console.WriteLine("Username sudah ada, silahkan masukkan ulang.");
                 }
-            } while (checkUsername(username) == true || RegistrationLibrary.areNull(username) == true);
+            } while (RegistrationClass.checkUsername(username) == true || RegistrationLibrary.areNull(username) == true);
 
             do
             {
-                Console.WriteLine("Masukkan password anda: ");
+                Console.WriteLine("\nMasukkan password anda: ");
                 pw = Console.ReadLine();
-            } while (RegistrationLibrary.areNull(pw) == true);
+                if (!RegistrationClass.checkPassword(pw))
+                {
+                    Console.WriteLine("Password minimal 8 karakter\n");
+                }
+            } while (RegistrationLibrary.areNull(pw) == true || RegistrationClass.checkPassword(pw) == false);
 
 
             do
             {
-                Console.WriteLine("Konfirmasi password anda: ");
+                Console.WriteLine("\nKonfirmasi password anda: ");
                 confirmpw = Console.ReadLine();
                 if (pw != confirmpw)
                 {
-                    Console.WriteLine("password tidak sama, silahkan masukkan ulang");
+                    Console.WriteLine("password tidak sama, silahkan masukkan ulang\n");
                 }
                 else
                 {
@@ -53,47 +57,10 @@ namespace Registration
                 }
             } while (pw != confirmpw || RegistrationLibrary.areNull(confirmpw) == true);
 
-            createAkun(name,username,pw);
+            RegistrationClass.createAkun(name,username,pw);
 
-            Console.WriteLine("Akun Berhasil dibuat!!!");
+            Console.WriteLine("\nAkun Berhasil dibuat!!!");
         }
-
-
-
-        static bool checkUsername(string username)
-        {
-            var initialJson = File.ReadAllText("user.json");
-            dynamic data = JArray.Parse(initialJson);
-
-            for (int i = 0; i < data.Count; i++)
-            {
-                if (data[i].username == username) 
-                { 
-                    return true; 
-                }
-            }
-            return false;
-        }
-
-
-        static void createAkun(string name, string username, string password)
-        {
-            var initialJson = File.ReadAllText("user.json");
-            var array = JArray.Parse(initialJson);
-            var itemToAdd = new JObject();
-            itemToAdd["name"] = name;
-            itemToAdd["username"] = username;
-            itemToAdd["password"] = password;
-            array.Add(itemToAdd);
-
-            var jsonToOutput = JsonConvert.SerializeObject(array, Formatting.Indented);
-            File.WriteAllText("user.json", jsonToOutput);
-        }
-
-
-
-
-
 
     }
 }
