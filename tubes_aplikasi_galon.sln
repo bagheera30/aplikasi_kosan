@@ -11,11 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "testprojekmenu", "testproje
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jalankan program menu", "jalankan program menu\jalankan program menu.csproj", "{0A3A7A24-FA70-4456-B1A0-894C6ACECB6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Registration", "E:\Project\TUBES KPL\Registration\Registration.csproj", "{E5DF9807-D655-4D91-87C6-F42169E71D5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Registration", "Registration\Registration.csproj", "{E5DF9807-D655-4D91-87C6-F42169E71D5F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrationTest", "E:\Project\TUBES KPL\RegistrationTest\RegistrationTest.csproj", "{ACBB3C1A-FD08-479C-ACE4-3F006C97352C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistrationTest", "RegistrationTest\RegistrationTest.csproj", "{ACBB3C1A-FD08-479C-ACE4-3F006C97352C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityLibrary", "E:\Project\TUBES KPL\UtilityLibrary\UtilityLibrary.csproj", "{A2B023AB-DBDB-45C6-B129-0FF850F72167}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilityLibrary", "UtilityLibrary\UtilityLibrary.csproj", "{A2B023AB-DBDB-45C6-B129-0FF850F72167}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
