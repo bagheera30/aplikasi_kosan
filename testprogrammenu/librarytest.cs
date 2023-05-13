@@ -1,10 +1,14 @@
-using menu_pembelian;
+﻿using menu_pembelian;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace testprojekmenu
+namespace testprogrammenu
 {
     [TestClass]
-    public class MenuManagerTests
+    public class librarytest
     {
         private const string testFilePath = "daftar_menu.json";
 
