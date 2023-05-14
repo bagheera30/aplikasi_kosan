@@ -1,14 +1,15 @@
 ﻿using jalankan_program_menu;
 using menu_pembelian;
+using Registration;
 using System.Net.Http.Json;
 
 public class Program
 {
-    
+
     static async Task Main(string[] args)
-        {
+    {
         bool isRunning = true;
-        bool islogin=false;
+        bool islogin = false;
         while (isRunning)
         {
             Console.WriteLine("Menu:");
@@ -22,12 +23,12 @@ public class Program
             switch (input)
             {
                 case "1":
-                    Login();
-                    
+                    //Login();
+
                     break;
                 case "2":
-                    Register();
-                    
+                    RegistrationClass.registrationPage();
+
                     break;
                 case "3":
                     isRunning = false;
@@ -36,7 +37,7 @@ public class Program
                     Console.WriteLine("Pilihan tidak valid. Silakan coba lagi.");
                     break;
             }
-            if(islogin)
+            if (islogin)
             {
                 while (true)
                 {
@@ -45,8 +46,8 @@ public class Program
                     Console.WriteLine("2. PEMBAYARAN ");
                     Console.WriteLine("3. keluar ");
                     Console.Write("Pilih opsi (1-3): ");
-                    string i=Console.ReadLine();
-                    switch(i)
+                    string i = Console.ReadLine();
+                    switch (i)
                     {
                         case "1":
                             MenuApiClient menuApiClient = new MenuApiClient();
@@ -91,21 +92,22 @@ public class Program
                         default:
                             Console.WriteLine("pihan anda tidak ada mohon masukan kembali");
                             break;
-                        
+
 
                     }
                 }
-           
 
-        
 
-           
+
+
+
+            }
+
+
         }
 
-        
-    }
 
-    
+    }
 }
 
    
