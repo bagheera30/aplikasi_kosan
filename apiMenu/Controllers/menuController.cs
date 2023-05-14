@@ -1,6 +1,7 @@
 ﻿using menu_pembelian;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Diagnostics.Contracts;
 using System.Text.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,10 +20,10 @@ namespace apiMenu.Controllers
         {
             return MenuManager.GetMenus();
         }
-        [HttpGet("{id}")]
-        public ActionResult<menu> GetMenuById(int id)
+        [HttpGet("{nama}")]
+        public ActionResult<menu> GetMenuByNama(string nama)
         {
-            menu m = MenuManager.getmenusbyID(id);
+            menu m = MenuManager.getmenusbyNama(nama);
             if (m != null)
             {
                 return m;
@@ -36,6 +37,7 @@ namespace apiMenu.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] menu menu)
         {
+            Contract.Requires(menu != null, "Menu object is null.");
             MenuManager.addmenu(menu);
             MenuManager.Serialize();
 
@@ -43,20 +45,21 @@ namespace apiMenu.Controllers
         }
 
         // PUT: api/Menu
-        [HttpPut("{id}")]
-        public ActionResult Put(int id, [FromBody] menu menu)
+        [HttpPut("{nama}")]
+        public ActionResult Put(string nama, [FromBody] menu menu)
         {
-            MenuManager.UpdateMenu(id, menu);
+            Contract.Requires(menu != null, "Menu object is null.");
+            MenuManager.UpdateMenu(nama, menu);
             MenuManager.Serialize();
 
             return NoContent();
         }
 
         // DELETE: api/Menu
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        [HttpDelete("{nama}")]
+        public ActionResult Delete(string nama)
         {
-            MenuManager.DeleteMenu(id);
+            MenuManager.DeleteMenu(nama);
             MenuManager.Serialize();
 
             return NoContent();

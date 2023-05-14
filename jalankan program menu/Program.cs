@@ -1,120 +1,111 @@
-﻿internal class Program
+﻿using jalankan_program_menu;
+using menu_pembelian;
+using System.Net.Http.Json;
+
+public class Program
 {
-    private static void Main(string[] args)
-    {
-        MenuSelection().GetAwaiter().GetResult();
-    }
-
-    private static async Task MenuSelection()
-    {
-        Console.WriteLine("Pilih operasi yang ingin Anda lakukan:");
-        Console.WriteLine("1. Tampilkan data dari Web API");
-        Console.WriteLine("2. Perbarui data di Web API");
-        Console.WriteLine("3. Posting data ke Web API");
-        Console.WriteLine("0. Keluar");
-
+    
+    static async Task Main(string[] args)
+        {
         bool isRunning = true;
-
+        bool islogin=false;
         while (isRunning)
         {
-            Console.Write("Masukkan pilihan Anda: ");
+            Console.WriteLine("Menu:");
+            Console.WriteLine("1. Login");
+            Console.WriteLine("2. Register");
+            Console.WriteLine("3. Keluar");
+
+            Console.Write("Pilihan Anda: ");
             string input = Console.ReadLine();
 
             switch (input)
             {
                 case "1":
-                    await GetDataFromAPI();
+                    Login();
+                    
                     break;
                 case "2":
-                    await UpdateDataInAPI();
+                    Register();
+                    
                     break;
                 case "3":
-                    await PostDataToAPI();
-                    break;
-                case "0":
                     isRunning = false;
                     break;
                 default:
                     Console.WriteLine("Pilihan tidak valid. Silakan coba lagi.");
                     break;
             }
+            if(islogin)
+            {
+                while (true)
+                {
+                    Console.WriteLine("=========DASBORD=========");
+                    Console.WriteLine("1. MENU ");
+                    Console.WriteLine("2. PEMBAYARAN ");
+                    Console.WriteLine("3. keluar ");
+                    Console.Write("Pilih opsi (1-3): ");
+                    string i=Console.ReadLine();
+                    switch(i)
+                    {
+                        case "1":
+                            MenuApiClient menuApiClient = new MenuApiClient();
+                            while (true)
+                            {
+                                Console.WriteLine("Menu:");
+                                Console.WriteLine("1. Cari Menu");
+                                Console.WriteLine("2. Tambah Menu");
+                                Console.WriteLine("3. Perbarui Menu");
+                                Console.WriteLine("4. hapus menu");
+                                Console.WriteLine("5. tampilkan semua menu");
+                                Console.WriteLine("6. Keluar");
+                                Console.WriteLine("Pilih opsi (1-4):");
 
-            Console.WriteLine();
+                                string userInput = Console.ReadLine();
+
+                                switch (userInput)
+                                {
+                                    case "1":
+                                        await menuApiClient.SearchMenu();
+                                        break;
+                                    case "2":
+                                        await menuApiClient.AddMenu();
+                                        break;
+                                    case "3":
+                                        await menuApiClient.UpdateMenu();
+                                        break;
+                                    case "4":
+                                        await menuApiClient.DeleteMenuByNama();
+                                        break;
+                                    case "5":
+                                        await menuApiClient.ShowAllMenus();
+                                        break;
+                                    case "6":
+                                        return;
+                                    default:
+                                        Console.WriteLine("Opsi tidak valid. Silakan pilih opsi yang benar.");
+                                        break;
+                                }
+                            }
+                            break;
+                        default:
+                            Console.WriteLine("pihan anda tidak ada mohon masukan kembali");
+                            break;
+                        
+
+                    }
+                }
+           
+
+        
+
+           
         }
+
+        
     }
 
-    private static async Task GetDataFromAPI()
-    {
-        using (HttpClient client = new HttpClient())
-        {
-            // Ganti URL dengan URL Web API Anda
-            string url = "https://api.example.com/data";
-
-            HttpResponseMessage response = await client.GetAsync(url);
-
-            if (response.IsSuccessStatusCode)
-            {
-                string data = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Data dari Web API:");
-                Console.WriteLine(data);
-            }
-            else
-            {
-                Console.WriteLine("Gagal mendapatkan data dari Web API. Kode status: " + response.StatusCode);
-            }
-        }
-    }
-
-    private static async Task UpdateDataInAPI()
-    {
-        Console.WriteLine("Masukkan data yang akan diperbarui:");
-
-        // Lakukan logika pembaruan data ke Web API
-        // Ganti kode di bawah ini dengan logika sesuai dengan kebutuhan Anda
-        string updatedData = Console.ReadLine();
-
-        using (HttpClient client = new HttpClient())
-        {
-            // Ganti URL dengan URL Web API Anda
-            string url = "https://api.example.com/data";
-
-            HttpResponseMessage response = await client.PutAsync(url, new StringContent(updatedData));
-
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Data berhasil diperbarui di Web API.");
-            }
-            else
-            {
-                Console.WriteLine("Gagal memperbarui data di Web API. Kode status: " + response.StatusCode);
-            }
-        }
-    }
-
-    private static async Task PostDataToAPI()
-    {
-        Console.WriteLine("Masukkan data yang akan diposting:");
-
-        // Lakukan logika posting data ke Web API
-        // Ganti kode di bawah ini dengan logika sesuai dengan kebutuhan Anda
-        string newData = Console.ReadLine();
-
-        using (HttpClient client = new HttpClient())
-        {
-            // Ganti URL dengan URL Web API Anda
-            string url = "https://api.example.com/data";
-
-            HttpResponseMessage response = await client.PostAsync(url, new StringContent(newData));
-
-            if (response.IsSuccessStatusCode)
-            {
-                Console.WriteLine("Data berhasil diposting ke Web API.");
-            }
-            else
-            {
-                Console.WriteLine("Gagal memposting data ke Web API. Kode status: " + response.StatusCode);
-            }
-        }
-    }
-
+    
 }
+
+   
