@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using Newtonsoft.Json.Linq;
+using System.Diagnostics.Contracts;
 
 namespace pembayaran_onesiforus
 {
@@ -19,10 +20,14 @@ namespace pembayaran_onesiforus
 
             int inputMetode = int.Parse(Console.ReadLine());
             pembayaranConfig.ubahMetode(inputMetode);
-            Console.WriteLine("Metode Pembayaran telah diubah menjadi: " + pembayaranConfig.config.metodePembayaran);
+            Console.WriteLine("Metode Pembayaran : " + pembayaranConfig.config.metodePembayaran);
 
             Console.WriteLine("\nApakah Anda ingin mengkonfirmasi pembayaran ini? (Y/N)");
             string inputKonfirmasi = Console.ReadLine();
+
+            Contract.Requires(!string.IsNullOrEmpty(inputKonfirmasi));
+            Contract.Requires(inputKonfirmasi.Equals("Y", StringComparison.OrdinalIgnoreCase) || inputKonfirmasi.Equals("N", StringComparison.OrdinalIgnoreCase));
+
             if (inputKonfirmasi == "Y" || inputKonfirmasi == "y")
             {
                 Console.WriteLine("Pembayaran telah dikonfirmasi.");
@@ -40,6 +45,10 @@ namespace pembayaran_onesiforus
 
                 Console.WriteLine("\nApakah Anda ingin mengubah metode pembayaran lagi? (Y/N)");
                 string inputUlang = Console.ReadLine();
+
+                Contract.Requires(!string.IsNullOrEmpty(inputUlang));
+                Contract.Requires(inputUlang.Equals("Y", StringComparison.OrdinalIgnoreCase) || inputUlang.Equals("N", StringComparison.OrdinalIgnoreCase));
+
                 if (inputUlang == "Y" || inputUlang == "y")
                 {
                     Console.WriteLine("\nSilakan pilih metode pembayaran baru:");
@@ -53,6 +62,10 @@ namespace pembayaran_onesiforus
 
                     Console.WriteLine("\nApakah Anda ingin mengkonfirmasi pembayaran baru ini? (Y/N)");
                     inputKonfirmasi = Console.ReadLine();
+
+                    Contract.Requires(!string.IsNullOrEmpty(inputKonfirmasi));
+                    Contract.Requires(inputKonfirmasi.Equals("Y", StringComparison.OrdinalIgnoreCase) || inputKonfirmasi.Equals("N", StringComparison.OrdinalIgnoreCase));
+
                     if (inputKonfirmasi == "Y" || inputKonfirmasi == "y")
                     {
                         Console.WriteLine("Pembayaran telah dikonfirmasi.");

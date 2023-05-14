@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -21,6 +22,8 @@ namespace pembarayarn_onesiforus
         public string configFileName = "pembayaran_config.json";
         public pembayaranconfig()
         {
+            Contract.Ensures(Contract.Result<pembayaranconfig>() != null);
+
             try
             {
                 ReadConfig();
@@ -33,13 +36,19 @@ namespace pembarayarn_onesiforus
         }
         private Config ReadConfig()
         {
+            Contract.Ensures(Contract.Result<Config>() != null);
+
             string jsonFromFile = File.ReadAllText(path + '/' + configFileName);
             config = JsonSerializer.Deserialize<Config>(jsonFromFile);
+
+            Contract.Assume(config != null);
             return config;
         }
 
         public void WriteConfig()
         {
+            Contract.Requires(config != null);
+
             JsonSerializerOptions options = new JsonSerializerOptions()
             {
                 WriteIndented = true
@@ -52,10 +61,17 @@ namespace pembarayarn_onesiforus
 
         private void SetDefault() 
         {
+            Contract.Ensures(config != null);
+
             config = new Config(metodePembayaran.E_WALLET,6000);
+
+            Contract.Assume(config != null);
         }
         public metodePembayaran ubahMetode(int input) 
         {
+            Contract.Requires(config != null);
+            Contract.Ensures(Enum.IsDefined(typeof(metodePembayaran), Contract.Result<metodePembayaran>()));
+
             if (input == 1)
             {
                 return config.metodePembayaran = metodePembayaran.E_WALLET;
@@ -68,9 +84,13 @@ namespace pembarayarn_onesiforus
             {
                 return config.metodePembayaran = metodePembayaran.QRIS;
             }
+            Contract.Assume(Enum.IsDefined(typeof(metodePembayaran), config.metodePembayaran));
+            return config.metodePembayaran;
         }
         public int biayaAdmin(metodePembayaran metode) 
         {
+            Contract.Requires(Enum.IsDefined(typeof(metodePembayaran), metode));
+
             if (metode == metodePembayaran.CASH)
             {
                 return 8000;
@@ -81,6 +101,7 @@ namespace pembarayarn_onesiforus
             }
             else 
             {
+                Contract.Assume(config != null);
                 return config.biayaAdmin;
             }
         }

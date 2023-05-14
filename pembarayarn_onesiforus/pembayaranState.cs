@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace pembarayarn_onesiforus
             public bayarTrigger aksi;
             public Transition(bayarState statusAwal, bayarState statusAkhir, bayarTrigger aksi) 
             {
+
                 this.statusAwal = statusAwal;
                 this.statusAkhir = statusAkhir;
                 this.aksi = aksi;
@@ -40,6 +42,7 @@ namespace pembarayarn_onesiforus
         };
         public bayarState GetNextState(bayarState statusAwal, bayarTrigger aksi) 
         {
+
             bayarState stateAkhir = statusAwal;
             for (int i = 0; i < transisi.Length; i++) 
             {
@@ -49,6 +52,8 @@ namespace pembarayarn_onesiforus
                     stateAkhir = perubahan.statusAkhir;
                 }
             }
+            Contract.Ensures(Contract.Result<bayarState>() != null, "State akhir tidak boleh null");
+
             return stateAkhir;
         }
         public void ActivateTrigger(bayarTrigger aksi) 
