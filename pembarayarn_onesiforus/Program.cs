@@ -8,60 +8,75 @@ namespace pembayaran_onesiforus
     class Program
     {
         static void Main(string[] args)
-        {/*
-            // Inisialisasi pembayaranState
-            pembayaranState pembayaran = new pembayaranState();
+        {
+            pembayaranconfig pembayaranConfig = new pembayaranconfig();
+            Console.WriteLine("Tagihan Anda: 100.000");
+            Console.WriteLine("Metode Pembayaran saat ini: " + pembayaranConfig.config.metodePembayaran);
+            Console.WriteLine("Biaya Admin saat ini: " + pembayaranConfig.config.biayaAdmin);
 
-            // Mulai mesin pembayaran
-            while (true)
+            Console.WriteLine("\nSilakan pilih metode pembayaran baru:");
+            Console.WriteLine("1. E-Wallet");
+            Console.WriteLine("2. Cash");
+            Console.WriteLine("3. QRIS");
+
+            int inputMetode = int.Parse(Console.ReadLine());
+            pembayaranConfig.ubahMetode(inputMetode);
+            Console.WriteLine("Metode Pembayaran telah diubah menjadi: " + pembayaranConfig.config.metodePembayaran);
+
+            Console.WriteLine("\nApakah Anda ingin mengkonfirmasi pembayaran ini? (Y/N)");
+            string inputKonfirmasi = Console.ReadLine();
+            if (inputKonfirmasi == "Y" || inputKonfirmasi == "y")
             {
-                Console.WriteLine("Silakan masukkan tindakan (input_pembayaran/check_pembayaran/balance/unbalance):");
-                string input = Console.ReadLine();
+                Console.WriteLine("Pembayaran telah dikonfirmasi.");
 
-                // Kirim tindakan ke pembayaranState
-                switch (input)
+                // melakukan pembayaran
+                pembayaranState pembayaranState = new pembayaranState();
+                pembayaranState.ActivateTrigger(bayarTrigger.INPUT_PEMBAYARAN);
+                pembayaranState.ActivateTrigger(bayarTrigger.CHECK_PEMBAYARAN);
+                pembayaranState.ActivateTrigger(bayarTrigger.BALANCE);
+                Console.WriteLine("Status pembayaran saat ini: " + pembayaranState.GetStatusAwal);
+            }
+            else
+            {
+                Console.WriteLine("Pembayaran dibatalkan.");
+
+                Console.WriteLine("\nApakah Anda ingin mengubah metode pembayaran lagi? (Y/N)");
+                string inputUlang = Console.ReadLine();
+                if (inputUlang == "Y" || inputUlang == "y")
                 {
-                    case "input_pembayaran":
-                        pembayaran.ActivateTrigger(bayarTrigger.INPUT_PEMBAYARAN);
-                        break;
-                    case "check_pembayaran":
-                        pembayaran.ActivateTrigger(bayarTrigger.CHECK_PEMBAYARAN);
-                        break;
-                    case "balance":
-                        pembayaran.ActivateTrigger(bayarTrigger.BALANCE);
-                        break;
-                    case "unbalance":
-                        pembayaran.ActivateTrigger(bayarTrigger.UNBALANCE);
-                        break;
-                    default:
-                        Console.WriteLine("Tindakan tidak dikenal.");
-                        break;
+                    Console.WriteLine("\nSilakan pilih metode pembayaran baru:");
+                    Console.WriteLine("1. E-Wallet");
+                    Console.WriteLine("2. Cash");
+                    Console.WriteLine("3. QRIS");
+
+                    inputMetode = int.Parse(Console.ReadLine());
+                    pembayaranConfig.ubahMetode(inputMetode);
+                    Console.WriteLine("Metode Pembayaran telah diubah menjadi: " + pembayaranConfig.config.metodePembayaran);
+
+                    Console.WriteLine("\nApakah Anda ingin mengkonfirmasi pembayaran baru ini? (Y/N)");
+                    inputKonfirmasi = Console.ReadLine();
+                    if (inputKonfirmasi == "Y" || inputKonfirmasi == "y")
+                    {
+                        Console.WriteLine("Pembayaran telah dikonfirmasi.");
+
+                        // melakukan pembayaran
+                        pembayaranState pembayaranState = new pembayaranState();
+                        pembayaranState.ActivateTrigger(bayarTrigger.INPUT_PEMBAYARAN);
+                        pembayaranState.ActivateTrigger(bayarTrigger.CHECK_PEMBAYARAN);
+                        pembayaranState.ActivateTrigger(bayarTrigger.BALANCE);
+                        Console.WriteLine("Status pembayaran saat ini: " + pembayaranState.GetStatusAwal);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pembayaran dibatalkan.");
+                    }
                 }
-
+                else
+                {
+                    Console.WriteLine("Terima kasih!");
+                }
             }
-            */
-            pembayaranconfig config = new pembayaranconfig();
-            Console.WriteLine("Metode pembayaran saat ini: " + config.config.metodePembayaran);
-            Console.WriteLine("Biaya admin saat ini: " + config.config.biayaAdmin);
-
-            Console.WriteLine("Apakah Anda ingin mengubah metode pembayaran? (y/n)");
-            string input = Console.ReadLine();
-
-            if (input == "y")
-            {
-                Console.WriteLine("Pilih metode pembayaran baru: ");
-                Console.WriteLine("1. E-Wallet");
-                Console.WriteLine("2. Cash");
-                Console.WriteLine("3. QRIS");
-
-                int metodeInput = Convert.ToInt32(Console.ReadLine());
-                config.ubahMetode(metodeInput);
-                config.WriteConfig();
-                Console.WriteLine("Metode pembayaran berhasil diubah menjadi: " + config.config.metodePembayaran);
-            }
-
-            Console.WriteLine("Biaya admin untuk metode pembayaran ini adalah: " + config.biayaAdmin(config.config.metodePembayaran));
-
+            Console.ReadLine();
         }
     }
 }

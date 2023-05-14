@@ -24,6 +24,12 @@ namespace pembarayarn_onesiforus
                 this.aksi = aksi;
             }
         }
+
+        internal bayarState GetStatusAwal()
+        {
+            return statusAwal;
+        }
+
         Transition[] transisi =
         {
             new Transition(bayarState.BELUM_BAYAR, bayarState.PENDING, bayarTrigger.INPUT_PEMBAYARAN),
@@ -31,7 +37,7 @@ namespace pembarayarn_onesiforus
             new Transition(bayarState.VERIFIKASI, bayarState.GAGAL, bayarTrigger.UNBALANCE),
             new Transition(bayarState.VERIFIKASI, bayarState.BERHASIL, bayarTrigger.BALANCE),
         };
-        private bayarState GetNextState(bayarState statusAwal, bayarTrigger aksi) 
+        public bayarState GetNextState(bayarState statusAwal, bayarTrigger aksi) 
         {
             bayarState stateAkhir = statusAwal;
             for (int i = 0; i < transisi.Length; i++) 
