@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\apiMenu\apiMenu.csproj" />
+    <ProjectReference Include="..\jalankan program menu\jalankan program kosan.csproj" />
     <ProjectReference Include="..\menu pembelian\menu pembelian.csproj" />
   </ItemGroup>
 

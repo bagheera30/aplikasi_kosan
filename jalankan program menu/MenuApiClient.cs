@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace jalankan_program_menu
 {
-    internal class MenuApiClient
+    public class MenuApiClient
     {
         private static readonly HttpClient client = new HttpClient();
         private const string baseUrl = "http://localhost:5065/api/";

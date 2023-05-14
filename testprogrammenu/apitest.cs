@@ -1,6 +1,7 @@
 using apiMenu.Controllers;
 using menu_pembelian;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace testprogrammenu
 {
@@ -24,7 +25,6 @@ namespace testprogrammenu
         public void Get_ReturnsListOfMenus()
         {
             // Arrange
-            var controller = new menuController();
 
             // Act
             var result = controller.Get() as ActionResult<List<menu>>;
@@ -35,30 +35,28 @@ namespace testprogrammenu
         }
 
         [TestMethod]
-        public void GetMenuById_WithValidId_ReturnsMenu()
+        public void GetMenuByNama_WithValidNama_ReturnsMenu()
         {
             // Arrange
-            var controller = new menuController();
-            int id = 1;
+            string nama = "Sample Menu";
 
             // Act
-            var result = controller.GetMenuById(id) as ActionResult<menu>;
+            var result = controller.GetMenuByNama(nama) as ActionResult<menu>;
 
             // Assert
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Value);
-            Assert.AreEqual(id, result.Value.id);
+            Assert.AreEqual(nama, result.Value.Nama);
         }
 
         [TestMethod]
-        public void GetMenuById_WithInvalidId_ReturnsNotFound()
+        public void GetMenuByNama_WithInvalidNama_ReturnsNotFound()
         {
             // Arrange
-            var controller = new menuController();
-            int id = 100;
+            string nama = "Invalid Menu";
 
             // Act
-            var result = controller.GetMenuById(id);
+            var result = controller.GetMenuByNama(nama);
 
             // Assert
             Assert.IsInstanceOfType(result.Result, typeof(NotFoundResult));
@@ -68,7 +66,6 @@ namespace testprogrammenu
         public void Post_WithValidMenu_ReturnsCreatedAtAction()
         {
             // Arrange
-            var controller = new menuController();
             var menu = new menu { id = 3, Nama = "New Menu", harga = 10 };
 
             // Act
@@ -80,15 +77,14 @@ namespace testprogrammenu
         }
 
         [TestMethod]
-        public void Put_WithValidIdAndMenu_ReturnsNoContent()
+        public void Put_WithValidNamaAndMenu_ReturnsNoContent()
         {
             // Arrange
-            var controller = new menuController();
-            int id = 1;
-            var menu = new menu { id = id, Nama = "Updated Menu", harga = 16 };
+            string nama = "Sample Menu";
+            var menu = new menu { id = 1, Nama = "Updated Menu", harga = 16 };
 
             // Act
-            var result = controller.Put(id, menu) as ActionResult;
+            var result = controller.Put(nama, menu) as ActionResult;
 
             // Assert
             Assert.IsNotNull(result);
@@ -96,14 +92,13 @@ namespace testprogrammenu
         }
 
         [TestMethod]
-        public void Delete_WithValidId_ReturnsNoContent()
+        public void Delete_WithValidNama_ReturnsNoContent()
         {
             // Arrange
-            var controller = new menuController();
-            int id = 1;
+            string nama = "Sample Menu";
 
             // Act
-            var result = controller.Delete(id) as ActionResult;
+            var result = controller.Delete(nama) as ActionResult;
 
             // Assert
             Assert.IsNotNull(result);

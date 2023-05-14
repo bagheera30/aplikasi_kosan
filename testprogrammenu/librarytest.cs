@@ -34,16 +34,28 @@ namespace testprogrammenu
         public void Deserialize_LoadsMenuFromFile()
         {
             // Arrange
-            // Arrange
             MenuManager.ClearMenus();
-            MenuManager.Deserialize();
+            var menu1 = new menu { id = 1, Nama = "Menu 1", harga = 10 };
+            var menu2 = new menu { id = 2, Nama = "Menu 2", harga = 13 };
+            MenuManager.addmenu(menu1);
+            MenuManager.addmenu(menu2);
+            MenuManager.Serialize();
 
             // Act
+            MenuManager.ClearMenus();
+            MenuManager.Deserialize();
             List<menu> loadedMenus = MenuManager.GetMenus();
 
             // Assert
             Assert.AreEqual(2, loadedMenus.Count, "Unexpected number of menus loaded from the file.");
+            menu loadedMenu1 = loadedMenus.Find(m => m.Nama == "Menu 1");
+            menu loadedMenu2 = loadedMenus.Find(m => m.Nama == "Menu 2");
+            Assert.IsNotNull(loadedMenu1, "Menu 1 not found after deserialization.");
+            Assert.IsNotNull(loadedMenu2, "Menu 2 not found after deserialization.");
+            Assert.AreEqual(10, loadedMenu1.harga, "Unexpected price for Menu 1 after deserialization.");
+            Assert.AreEqual(13, loadedMenu2.harga, "Unexpected price for Menu 2 after deserialization.");
         }
+
         [TestMethod]
         public void AddMenu_ShouldAddMenuToList()
         {
@@ -68,9 +80,9 @@ namespace testprogrammenu
             var updatedMenu = new menu { id = 1, Nama = "Updated Menu 1", harga = 15, foto = "menu1-updated.jpg" };
 
             // Act
-            updatedMenu.harga = 15; // Pastikan nilai harga sudah diperbarui
-            MenuManager.UpdateMenu(menu.id, updatedMenu);
-            var updated = MenuManager.getmenusbyID(menu.id);
+            updatedMenu.Nama = "Updated Menu 1"; // Update the "Nama" field
+            MenuManager.UpdateMenu(menu.Nama, updatedMenu);
+            var updated = MenuManager.getmenusbyNama(menu.Nama);
 
             // Assert
             Assert.AreEqual(updatedMenu.Nama, updated.Nama);
@@ -87,11 +99,13 @@ namespace testprogrammenu
             MenuManager.addmenu(m1);
 
             // Act
-            MenuManager.DeleteMenu(1);
+            MenuManager.DeleteMenu("Menu 1");
 
             // Assert
-            menu deletedMenu = MenuManager.getmenusbyID(1);
-            Assert.IsNull(deletedMenu, "Menu with id 1 still exists in the library.");
+            menu deletedMenu = MenuManager.getmenusbyNama("Menu 1");
+            Assert.IsNull(deletedMenu, "Menu with name 'Menu 1' still exists in the library.");
+            List<menu> menus = MenuManager.GetMenus();
+            Assert.IsFalse(menus.Contains(m1), "Menu with name 'Menu 1' still exists in the library.");
         }
     }
 }
