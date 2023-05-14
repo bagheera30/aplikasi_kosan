@@ -11,7 +11,7 @@ namespace pembayaran_onesiforus
         static void Main(string[] args)
         {
             pembayaranconfig pembayaranConfig = new pembayaranconfig();
-            Console.WriteLine("Tagihan Anda: 100.000");
+            Console.WriteLine("Tagihan Anda: 1.000.000");
 
             Console.WriteLine("\nSilakan pilih metode pembayaran baru:");
             Console.WriteLine("1. E-Wallet");
