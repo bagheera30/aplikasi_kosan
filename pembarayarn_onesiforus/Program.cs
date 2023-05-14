@@ -11,8 +11,6 @@ namespace pembayaran_onesiforus
         {
             pembayaranconfig pembayaranConfig = new pembayaranconfig();
             Console.WriteLine("Tagihan Anda: 100.000");
-            Console.WriteLine("Metode Pembayaran saat ini: " + pembayaranConfig.config.metodePembayaran);
-            Console.WriteLine("Biaya Admin saat ini: " + pembayaranConfig.config.biayaAdmin);
 
             Console.WriteLine("\nSilakan pilih metode pembayaran baru:");
             Console.WriteLine("1. E-Wallet");
@@ -34,7 +32,7 @@ namespace pembayaran_onesiforus
                 pembayaranState.ActivateTrigger(bayarTrigger.INPUT_PEMBAYARAN);
                 pembayaranState.ActivateTrigger(bayarTrigger.CHECK_PEMBAYARAN);
                 pembayaranState.ActivateTrigger(bayarTrigger.BALANCE);
-                Console.WriteLine("Status pembayaran saat ini: " + pembayaranState.GetStatusAwal);
+                Console.WriteLine("Status pembayaran saat ini: " + pembayaranState.GetStatusAwal());
             }
             else
             {
@@ -64,7 +62,7 @@ namespace pembayaran_onesiforus
                         pembayaranState.ActivateTrigger(bayarTrigger.INPUT_PEMBAYARAN);
                         pembayaranState.ActivateTrigger(bayarTrigger.CHECK_PEMBAYARAN);
                         pembayaranState.ActivateTrigger(bayarTrigger.BALANCE);
-                        Console.WriteLine("Status pembayaran saat ini: " + pembayaranState.GetStatusAwal);
+                        Console.WriteLine("Status pembayaran saat ini: " + pembayaranState.GetStatusAwal());
                     }
                     else
                     {

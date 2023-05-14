@@ -12,6 +12,7 @@ namespace pembarayarn_onesiforus
     public class pembayaranState
     {
         bayarState statusAwal = bayarState.BELUM_BAYAR;
+        bayarState statusAkhir;
         public class Transition 
         {
             public bayarState statusAwal;
@@ -25,7 +26,7 @@ namespace pembarayarn_onesiforus
             }
         }
 
-        internal bayarState GetStatusAwal()
+        public bayarState GetStatusAwal()
         {
             return statusAwal;
         }
